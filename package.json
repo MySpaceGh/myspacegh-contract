@@ -1,0 +1,17 @@
+{
+  "name": "@myspacegh/contract",
+  "version": "0.1.0",
+  "description": "Canonical cross-app domain enums for MySpaceGh (mirrors the Laravel backend). Consumed by web + mobile so TypeScript enums can't drift.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "license": "UNLICENSED",
+  "private": true
+}
