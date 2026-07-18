@@ -137,3 +137,17 @@ export const USER_ROLES: readonly UserRole[] = [
   'facility_owner',
   'admin',
 ] as const;
+
+/**
+ * Kind of lister, mirrors backend/app/Enums/ListerType.php. Both kinds hold the
+ * `facility_owner` role (identical abilities); this only distinguishes them for
+ * labels, terms, and the future house-owner listing cap. Renters have `null`.
+ */
+export type ListerType = 'agent' | 'house_owner';
+
+export const LISTER_TYPES: readonly ListerType[] = ['agent', 'house_owner'] as const;
+
+export const LISTER_TYPE_LABELS: Record<ListerType, string> = {
+  agent: 'Agent',
+  house_owner: 'House owner',
+};
