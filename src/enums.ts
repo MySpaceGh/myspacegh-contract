@@ -1,5 +1,5 @@
 /**
- * Canonical domain enums for the MySpaceGh platform.
+ * Canonical domain enums for the MySpaceGH platform.
  *
  * SOURCE OF TRUTH: backend/app/Enums/*.php (Laravel). These string-literal
  * unions MUST mirror those PHP enums exactly. When the backend changes an enum,
@@ -44,7 +44,8 @@ export type FacilityStatus =
   | 'paused'
   | 'inactive'
   | 'rejected'
-  | 'unavailable';
+  | 'unavailable'
+  | 'taken';
 
 export const FACILITY_STATUSES: readonly FacilityStatus[] = [
   'draft',
@@ -54,6 +55,7 @@ export const FACILITY_STATUSES: readonly FacilityStatus[] = [
   'inactive',
   'rejected',
   'unavailable',
+  'taken',
 ] as const;
 
 export const FACILITY_STATUS_LABELS: Record<FacilityStatus, string> = {
@@ -64,12 +66,17 @@ export const FACILITY_STATUS_LABELS: Record<FacilityStatus, string> = {
   inactive: 'Inactive',
   rejected: 'Rejected',
   unavailable: 'Unavailable',
+  taken: 'Taken',
 };
 
-/** Statuses a facility owner is allowed to set themselves. */
+/**
+ * Statuses a facility owner is allowed to set themselves. `taken` lets an owner
+ * mark a rented-out listing (and later relist by moving it back to `active`);
+ * admin-set statuses (inactive/rejected/unavailable) remain owner-locked.
+ */
 export type OwnerSettableFacilityStatus = Extract<
   FacilityStatus,
-  'active' | 'paused' | 'pending'
+  'active' | 'paused' | 'pending' | 'taken'
 >;
 
 /** mirrors backend/app/Enums/PaymentDuration.php */
@@ -150,4 +157,67 @@ export const LISTER_TYPES: readonly ListerType[] = ['agent', 'house_owner'] as c
 export const LISTER_TYPE_LABELS: Record<ListerType, string> = {
   agent: 'Agent',
   house_owner: 'House owner',
+};
+
+/* ------------------------------------------------------------------ *
+ * MySpace Rewards (points system)
+ * ------------------------------------------------------------------ */
+
+/** mirrors backend/app/Enums/PointTransactionType.php — ledger entry kinds. */
+export type PointTransactionType =
+  | 'earn_listing_approved'
+  | 'earn_listing_quality'
+  | 'earn_fast_response'
+  | 'earn_booking_paid_agent'
+  | 'earn_booking_paid_tenant'
+  | 'earn_review_submitted'
+  | 'earn_geo_report'
+  | 'earn_status_taken'
+  | 'earn_availability_confirmed'
+  | 'reversal'
+  | 'redeem_listing_boost'
+  | 'redeem_profile_boost'
+  | 'redeem_cashback'
+  | 'expired'
+  | 'admin_adjustment';
+
+export const POINT_TRANSACTION_TYPE_LABELS: Record<PointTransactionType, string> = {
+  earn_listing_approved: 'Listing approved',
+  earn_listing_quality: 'Quality listing bonus',
+  earn_fast_response: 'Fast response',
+  earn_booking_paid_agent: 'Booking paid',
+  earn_booking_paid_tenant: 'Paid safely through MySpace',
+  earn_review_submitted: 'Review submitted',
+  earn_geo_report: 'Map accuracy report',
+  earn_status_taken: 'Marked as taken',
+  earn_availability_confirmed: 'Availability confirmed',
+  reversal: 'Reversal',
+  redeem_listing_boost: 'Listing boost',
+  redeem_profile_boost: 'Profile boost',
+  redeem_cashback: 'Cashback',
+  expired: 'Expired',
+  admin_adjustment: 'Adjustment',
+};
+
+/** mirrors backend/app/Enums/PointRedemptionType.php */
+export type PointRedemptionType = 'listing_boost' | 'profile_boost' | 'cashback';
+
+export const POINT_REDEMPTION_TYPE_LABELS: Record<PointRedemptionType, string> = {
+  listing_boost: 'Listing boost',
+  profile_boost: 'Profile boost',
+  cashback: 'Cashback',
+};
+
+/** mirrors backend/app/Enums/PointRedemptionStatus.php */
+export type PointRedemptionStatus =
+  | 'active'
+  | 'fulfilled'
+  | 'pending'
+  | 'cancelled';
+
+export const POINT_REDEMPTION_STATUS_LABELS: Record<PointRedemptionStatus, string> = {
+  active: 'Active',
+  fulfilled: 'Fulfilled',
+  pending: 'Pending',
+  cancelled: 'Cancelled',
 };

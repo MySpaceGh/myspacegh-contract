@@ -1,6 +1,6 @@
 # @myspacegh/contract
 
-The **single source of truth** for cross-app domain enums on the MySpaceGh platform.
+The **single source of truth** for cross-app domain enums on the MySpaceGH platform.
 
 It exists to stop one specific bug class: the web app and the mobile app each used to
 define their own copies of `BookingStatus`, `FacilityStatus`, etc., and they **drifted**
