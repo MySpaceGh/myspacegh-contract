@@ -221,3 +221,59 @@ export const POINT_REDEMPTION_STATUS_LABELS: Record<PointRedemptionStatus, strin
   pending: 'Pending',
   cancelled: 'Cancelled',
 };
+
+/** mirrors backend/app/Enums/BookingReportType.php */
+export type BookingReportType =
+  | 'safety'
+  | 'fraudulent_amount'
+  | 'no_show'
+  | 'not_as_described'
+  | 'other';
+
+export const BOOKING_REPORT_TYPES: readonly BookingReportType[] = [
+  'safety',
+  'fraudulent_amount',
+  'no_show',
+  'not_as_described',
+  'other',
+] as const;
+
+export const BOOKING_REPORT_TYPE_LABELS: Record<BookingReportType, string> = {
+  safety: 'Safety concern',
+  fraudulent_amount: 'Fraudulent amount',
+  no_show: 'No-show',
+  not_as_described: 'Listing not as described',
+  other: 'Other',
+};
+
+/**
+ * mirrors backend/app/Enums/BookingReportStatus.php
+ *
+ * `open` and `investigating` are the *live* statuses: a booking carrying either
+ * is frozen — neither party can confirm completion and it will not auto-close.
+ */
+export type BookingReportStatus =
+  | 'open'
+  | 'investigating'
+  | 'resolved'
+  | 'dismissed';
+
+export const BOOKING_REPORT_STATUSES: readonly BookingReportStatus[] = [
+  'open',
+  'investigating',
+  'resolved',
+  'dismissed',
+] as const;
+
+export const BOOKING_REPORT_STATUS_LABELS: Record<BookingReportStatus, string> = {
+  open: 'Open',
+  investigating: 'Investigating',
+  resolved: 'Resolved',
+  dismissed: 'Dismissed',
+};
+
+/** The two statuses that hold a booking frozen. */
+export const LIVE_BOOKING_REPORT_STATUSES: readonly BookingReportStatus[] = [
+  'open',
+  'investigating',
+] as const;
