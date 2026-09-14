@@ -131,17 +131,18 @@ export type CancellationCategory =
 export type TermsStatus = 'draft' | 'active' | 'archived';
 
 /** mirrors backend/app/Enums/TermsAudience.php */
-export type TermsAudience = 'user' | 'facility_owner';
+export type TermsAudience = 'user' | 'facility_owner' | 'service_provider';
 
 /**
  * Backend user roles (Spatie permission roles, see database/seeders/RoleSeeder.php).
  * NOT the same as a UI "role"; these are the authoritative server-side roles.
  */
-export type UserRole = 'user' | 'facility_owner' | 'admin';
+export type UserRole = 'user' | 'facility_owner' | 'service_provider' | 'admin';
 
 export const USER_ROLES: readonly UserRole[] = [
   'user',
   'facility_owner',
+  'service_provider',
   'admin',
 ] as const;
 
@@ -277,3 +278,48 @@ export const LIVE_BOOKING_REPORT_STATUSES: readonly BookingReportStatus[] = [
   'open',
   'investigating',
 ] as const;
+
+/* ------------------------------------------------------------------ *
+ * Service providers
+ * ------------------------------------------------------------------ */
+
+/**
+ * mirrors backend/app/Enums/ServiceProfileStatus.php — a provider profile's
+ * moderation lifecycle. Providers may set `pending` (submit), `paused` and
+ * `active` (resume a self-paused profile); `inactive` and `rejected` are
+ * admin-only.
+ */
+export type ServiceProfileStatus =
+  | 'draft'
+  | 'pending'
+  | 'active'
+  | 'paused'
+  | 'inactive'
+  | 'rejected';
+
+export const SERVICE_PROFILE_STATUSES: readonly ServiceProfileStatus[] = [
+  'draft',
+  'pending',
+  'active',
+  'paused',
+  'inactive',
+  'rejected',
+] as const;
+
+export const SERVICE_PROFILE_STATUS_LABELS: Record<ServiceProfileStatus, string> = {
+  draft: 'Draft',
+  pending: 'Pending Review',
+  active: 'Active',
+  paused: 'Paused',
+  inactive: 'Inactive',
+  rejected: 'Rejected',
+};
+
+/**
+ * mirrors backend/app/Enums/BookingKind.php — what a booking is for. Returned
+ * as `kind` on bookings and chat threads; derived server-side from which
+ * foreign key is set.
+ */
+export type BookingKind = 'facility' | 'service';
+
+export const BOOKING_KINDS: readonly BookingKind[] = ['facility', 'service'] as const;
