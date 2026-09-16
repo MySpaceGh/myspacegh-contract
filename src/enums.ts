@@ -147,6 +147,24 @@ export const USER_ROLES: readonly UserRole[] = [
 ] as const;
 
 /**
+ * Which first-party app is calling, mirrors backend/app/Enums/ClientApp.php.
+ * Sent as the `X-App-Id` header on every request. One account is shared by all
+ * apps (Google-account model); the backend uses this to name tokens, file push
+ * tokens per app, route pushes and default the terms audience.
+ */
+export type ClientApp = 'spaces_mobile' | 'services_mobile' | 'web';
+
+export const CLIENT_APPS: readonly ClientApp[] = ['spaces_mobile', 'services_mobile', 'web'] as const;
+
+export const CLIENT_APP_HEADER = 'X-App-Id';
+
+export const CLIENT_APP_LABELS: Record<ClientApp, string> = {
+  spaces_mobile: 'MySpaceGH',
+  services_mobile: 'MySpaceGH Services',
+  web: 'Web',
+};
+
+/**
  * Kind of lister, mirrors backend/app/Enums/ListerType.php. Both kinds hold the
  * `facility_owner` role (identical abilities); this only distinguishes them for
  * labels, terms, and the future house-owner listing cap. Seekers have `null`.
