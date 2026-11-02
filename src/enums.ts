@@ -160,9 +160,9 @@ export const CLIENT_APP_HEADER = 'X-App-Id';
 
 export const CLIENT_APP_LABELS: Record<ClientApp, string> = {
   spaces_mobile: 'MySpaceGH',
-  services_mobile: 'MySpaceGH Services',
+  services_mobile: 'MyServiceGH',
   web: 'Web',
-  services_web: 'MySpaceGH Services Web',
+  services_web: 'MyServiceGH Web',
 };
 
 /**
