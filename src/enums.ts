@@ -152,9 +152,9 @@ export const USER_ROLES: readonly UserRole[] = [
  * apps (Google-account model); the backend uses this to name tokens, file push
  * tokens per app, route pushes and default the terms audience.
  */
-export type ClientApp = 'spaces_mobile' | 'services_mobile' | 'web';
+export type ClientApp = 'spaces_mobile' | 'services_mobile' | 'web' | 'services_web';
 
-export const CLIENT_APPS: readonly ClientApp[] = ['spaces_mobile', 'services_mobile', 'web'] as const;
+export const CLIENT_APPS: readonly ClientApp[] = ['spaces_mobile', 'services_mobile', 'web', 'services_web'] as const;
 
 export const CLIENT_APP_HEADER = 'X-App-Id';
 
@@ -162,6 +162,7 @@ export const CLIENT_APP_LABELS: Record<ClientApp, string> = {
   spaces_mobile: 'MySpaceGH',
   services_mobile: 'MySpaceGH Services',
   web: 'Web',
+  services_web: 'MySpaceGH Services Web',
 };
 
 /**
