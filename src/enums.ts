@@ -194,6 +194,8 @@ export type PointTransactionType =
   | 'earn_geo_report'
   | 'earn_status_taken'
   | 'earn_availability_confirmed'
+  | 'earn_referral_inviter'
+  | 'earn_referral_joined'
   | 'reversal'
   | 'redeem_listing_boost'
   | 'redeem_profile_boost'
@@ -211,6 +213,8 @@ export const POINT_TRANSACTION_TYPE_LABELS: Record<PointTransactionType, string>
   earn_geo_report: 'Map accuracy report',
   earn_status_taken: 'Marked as taken',
   earn_availability_confirmed: 'Availability confirmed',
+  earn_referral_inviter: 'Friend invited',
+  earn_referral_joined: 'Invite welcome bonus',
   reversal: 'Reversal',
   redeem_listing_boost: 'Listing boost',
   redeem_profile_boost: 'Profile boost',
