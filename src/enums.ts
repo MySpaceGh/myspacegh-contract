@@ -130,6 +130,12 @@ export type CancellationCategory =
 /** mirrors backend/app/Enums/TermsStatus.php */
 export type TermsStatus = 'draft' | 'active' | 'archived';
 
+/** mirrors backend/app/Enums/LegalProduct.php */
+export type LegalProduct = 'spaces' | 'services';
+
+/** mirrors backend/app/Enums/LegalDocumentType.php */
+export type LegalDocumentType = 'terms' | 'privacy';
+
 /** mirrors backend/app/Enums/TermsAudience.php */
 export type TermsAudience = 'user' | 'facility_owner' | 'service_provider';
 
