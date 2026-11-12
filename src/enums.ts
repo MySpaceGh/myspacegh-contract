@@ -352,3 +352,39 @@ export const SERVICE_PROFILE_STATUS_LABELS: Record<ServiceProfileStatus, string>
 export type BookingKind = 'facility' | 'service';
 
 export const BOOKING_KINDS: readonly BookingKind[] = ['facility', 'service'] as const;
+
+/**
+ * mirrors backend/app/Enums/OfferingFulfilment.php — how a customer gets a
+ * service offering. `book` is the provider request flow; `order` is fulfilled
+ * by MyServiceGH ops.
+ */
+export type OfferingFulfilment = 'book' | 'order';
+
+export const OFFERING_FULFILMENTS: readonly OfferingFulfilment[] = ['book', 'order'] as const;
+
+export const OFFERING_FULFILMENT_LABELS: Record<OfferingFulfilment, string> = {
+  book: 'Book a provider',
+  order: 'Order for delivery',
+};
+
+/**
+ * mirrors backend/app/Enums/OfferingPriceType.php — how an offering's price
+ * reads. `quote` carries no price.
+ */
+export type OfferingPriceType = 'fixed' | 'starting_from' | 'quote';
+
+export const OFFERING_PRICE_TYPES: readonly OfferingPriceType[] = ['fixed', 'starting_from', 'quote'] as const;
+
+export const OFFERING_PRICE_TYPE_LABELS: Record<OfferingPriceType, string> = {
+  fixed: 'Fixed price',
+  starting_from: 'Starting from',
+  quote: 'Price on request',
+};
+
+/**
+ * mirrors backend/app/Enums/ServiceBrowseView.php — which side of the
+ * Services / Providers toggle a category opens on.
+ */
+export type ServiceBrowseView = 'services' | 'providers';
+
+export const SERVICE_BROWSE_VIEWS: readonly ServiceBrowseView[] = ['services', 'providers'] as const;
