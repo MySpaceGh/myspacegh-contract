@@ -388,3 +388,48 @@ export const OFFERING_PRICE_TYPE_LABELS: Record<OfferingPriceType, string> = {
 export type ServiceBrowseView = 'services' | 'providers';
 
 export const SERVICE_BROWSE_VIEWS: readonly ServiceBrowseView[] = ['services', 'providers'] as const;
+
+/** mirrors backend/app/Enums/OrderKind.php — a cash-on-delivery order ops fulfil. */
+export type OrderKind = 'food' | 'courier' | 'laundry';
+
+export const ORDER_KINDS: readonly OrderKind[] = ['food', 'courier', 'laundry'] as const;
+
+/**
+ * mirrors backend/app/Enums/OrderStatus.php — placed → confirmed → in_progress →
+ * out_for_delivery → delivered, or cancelled from any open status.
+ */
+export type OrderStatus = 'placed' | 'confirmed' | 'in_progress' | 'out_for_delivery' | 'delivered' | 'cancelled';
+
+export const ORDER_STATUSES: readonly OrderStatus[] = [
+  'placed',
+  'confirmed',
+  'in_progress',
+  'out_for_delivery',
+  'delivered',
+  'cancelled',
+] as const;
+
+/** mirrors backend/app/Enums/OrderPaymentStatus.php — cash is unpaid until ops record it. */
+export type OrderPaymentStatus = 'unpaid' | 'collected';
+
+/** mirrors backend/app/Enums/OrderIfUnavailable.php — what ops do when a dish is out. */
+export type OrderIfUnavailable = 'call' | 'remove';
+
+/** mirrors backend/app/Enums/CourierPackageKind.php */
+export type CourierPackageKind = 'documents' | 'food_groceries' | 'electronics' | 'clothing_box';
+
+export const COURIER_PACKAGE_KIND_LABELS: Record<CourierPackageKind, string> = {
+  documents: 'Documents',
+  food_groceries: 'Food & groceries',
+  electronics: 'Electronics',
+  clothing_box: 'Clothing & boxes',
+};
+
+/** mirrors backend/app/Enums/LaundryService.php */
+export type LaundryService = 'wash_fold' | 'dry_cleaning' | 'bedding';
+
+export const LAUNDRY_SERVICE_LABELS: Record<LaundryService, string> = {
+  wash_fold: 'Wash & Fold',
+  dry_cleaning: 'Dry Cleaning & Ironing',
+  bedding: 'Bedding & Curtains',
+};
